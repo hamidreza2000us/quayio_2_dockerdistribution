@@ -10,8 +10,9 @@ sourceRegistry="quayio.myhost.com"
 destinationRegistry="repo2.myhost.com:5000"
 username=admin
 password=Iahoora@123
+limit=100
 
-allImages=$(podman search $sourceRegistry/ | awk '{print $2}' | tail -n+2)
+allImages=$(podman search $sourceRegistry/  --limit=$limit | awk '{print $2}' | tail -n+2)
 for image in $allImages 
 do
   repoUser=$(echo $image | awk -F/ '{print $2}')
